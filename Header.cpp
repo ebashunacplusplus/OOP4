@@ -1,5 +1,6 @@
 #include "Header.h"
 
-COLORREF get_color(Color col) {
-	return RGB(col.r, col.g, col.b);
+COLORREF BuildColor(Color color) {
+	COLORREF temp = RGB(color.r, color.g, color.b);
+	return temp;
 }

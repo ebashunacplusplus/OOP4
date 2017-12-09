@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Header.h"
+
+#include "Form.h"
 
 using namespace std;
 
@@ -9,6 +10,6 @@ Color blue(0, 0, 255);
 
 int main() {
 
-
+	
 	return 0;
 }
