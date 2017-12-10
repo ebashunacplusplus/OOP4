@@ -1,9 +1,13 @@
 #pragma once
+#include "ContourForm.h"
+#include "FilledForm.h"
 
-
-class CombForm {
+class CombForm: public FilledForm {
 
 private:
+
+	ContourForm cTrapeze;
+
 
 public:
 

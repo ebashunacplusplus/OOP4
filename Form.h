@@ -8,24 +8,34 @@
 class Form {
 
 protected:
+
 	POINT points[4];
 	COLORREF contourColor;
-
+	int contourStyle;
+	int contourSize;
 
 public:
 
-	Form() {};
-	~Form() {};
+	Form() {}
+	Form(int c_style, int c_size, Color c_color, POINT *p_Form) : contourColor(BuildColor(c_color)), contourSize(c_size), contourStyle(c_style){
+		set_pointsForm(p_Form);
+	}
 
-	virtual void drawForm(HDC hdc) = 0;
+	virtual void drawForm(HWND hwnd) = 0;
 	virtual void loadFile(std::string namefile) = 0;
 	virtual void saveFile(std::string namefile) = 0;
 
-	void set_points(POINT* points);
+	void set_pointsForm(POINT* points);
+	void set_styleForm(int stl) { contourStyle = stl; }
+	void set_sizeForm(int sz) { contourSize = sz; }
 	void set_ContourColor(Color color) { contourColor = BuildColor(color); }
-	void get_points(POINT* points) const;
+
+	void get_pointsForm(POINT* point) const;
+	int get_styleForm() const { return contourStyle; }
+	int get_sizeForm() const { return contourSize; }
+
 	void actionForm(HWND hwnd, HDC hdc);
-	COLORREF get_BorderColorForm() { return contourColor; }
+	COLORREF get_ContourColor() { return contourColor; }
 
 };
 
