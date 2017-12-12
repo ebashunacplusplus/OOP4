@@ -14,11 +14,12 @@ protected:
 	int contourStyle;
 	int contourSize;
 
-	void setUp();
-	void setDown(HWND hwnd);
-	void setLeft();
-	void setRight(HWND hwnd);
+	virtual void setUp();
+	virtual void setDown(HWND hwnd);
+	virtual void setLeft();
+	virtual void setRight(HWND hwnd);
 
+	
 public:
 
 	Form() {}
@@ -29,17 +30,21 @@ public:
 	virtual void drawForm(HDC hdc) = 0;
 	virtual void loadFile(std::string namefile) = 0;
 	virtual void saveFile(std::string namefile) = 0;
+	
 
 	void set_pointsForm(POINT* points);
 	void set_styleForm(int stl) { contourStyle = stl; }
 	void set_sizeForm(int sz) { contourSize = sz; }
 	void set_ContourColor(Color color) { contourColor = color; }
 
-	void get_pointsForm(POINT* point) const;
+	void get_pointsForm(POINT* ipoint) const;
 	int get_styleForm() const { return contourStyle; }
 	int get_sizeForm() const { return contourSize; }
 
+	void correctPointX(int i, int x) { points[i].x += x; }
+	void correctPointY(int i, int x) { points[i].y += x; }
 	void actionForm(HWND hwnd, HDC hdc);
+
 	COLORREF get_ContourColor() { return contourColor; }
 
 };

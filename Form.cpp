@@ -7,8 +7,11 @@ void Form::set_pointsForm(POINT* point) {
 	}
 }
 
-void Form::get_pointsForm(POINT* points) const {
-	
+void Form::get_pointsForm(POINT* ipoints) const {
+	for (int i = 0; i < 4; i++) {
+		ipoints[i].x = points[i].x;
+		ipoints[i].y = points[i].y;
+	}
 
 }
 
