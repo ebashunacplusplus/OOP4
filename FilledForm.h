@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ContourForm.h"
 #include "Filled.h"
 

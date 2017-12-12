@@ -1,10 +1,11 @@
 #pragma once
+
+#include <iostream>
 #include <Windows.h>
 #include <windowsx.h>
+#include <fstream>
+#include <conio.h>
 
-struct Color {
-	int r, g, b;
-	Color(int r, int g, int b) :r(r), g(g), b(b) {};
-};
+typedef COLORREF Color;
 
-COLORREF BuildColor(Color color);
+void eraseDisplay(HDC hdc, HWND hwnd);
