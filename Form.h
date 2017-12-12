@@ -10,7 +10,7 @@ class Form {
 protected:
 
 	POINT points[4];
-	COLORREF contourColor;
+	Color contourColor;
 	int contourStyle;
 	int contourSize;
 

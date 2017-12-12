@@ -73,7 +73,7 @@ void Form::actionForm(HWND hwnd, HDC hdc) {
 		case 27:
 			return;
 		default:
-			std::cout << "Неверная клавиша" << std::endl;
+			std::cout << "Invalid button" << std::endl;
 			break;
 		}
 	}
