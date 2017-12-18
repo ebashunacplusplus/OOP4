@@ -11,3 +11,9 @@ void eraseDisplay(HDC hdc, HWND hwnd) {
 	DeletePen(hPen);
 	DeleteBrush(hBrushS);
 }
+
+int area_tr(POINT p_one, POINT p_two, POINT p_three) {
+	int area;
+	area = 0.5*((p_one.x - p_three.x)*(p_two.y - p_three.y) - (p_two.x - p_three.x)*(p_one.y - p_three.y));
+	return abs(area);
+}

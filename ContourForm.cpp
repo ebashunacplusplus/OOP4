@@ -12,7 +12,7 @@ void ContourForm::drawForm(HDC hdc) {
 
 }
 
-void ContourForm::loadFile(std::string namefile) {
+void ContourForm::loadFile(std::string namefile, HWND hwnd) {
 
 	int r, g, b;
 	std::ifstream fin;
@@ -27,7 +27,11 @@ void ContourForm::loadFile(std::string namefile) {
 	}
 	contourColor = RGB(r, g, b);
 	fin.close();
-
+	if (chek_figure() && chek_border(hwnd)) state = true;
+	else {
+		state = false;
+		throw 2;
+	}
 }
 
 void ContourForm::saveFile(std::string namefile) {
@@ -44,4 +48,18 @@ void ContourForm::saveFile(std::string namefile) {
 		 << " " << static_cast<int>(GetGValue(contourColor)) 
 		 << " " << static_cast<int>(GetBValue(contourColor));
 	fout.close();
+}
+
+void ContourForm::enterContourForm(int c_style, int c_size, Color c_color, POINT *c_points, HWND hwnd) {
+
+	contourStyle = c_style;
+	contourSize = c_size;
+	contourColor = c_color;
+	
+	set_pointsForm(c_points);
+	if (chek_figure() && chek_border(hwnd)) state = true;
+	else {
+		state = false;
+		throw 2;
+	}
 }

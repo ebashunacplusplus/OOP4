@@ -13,7 +13,7 @@ void FilledForm::drawForm(HDC hdc) {
 
 }
 
-void FilledForm::loadFile(std::string namefile) {
+void FilledForm::loadFile(std::string namefile, HWND hwnd) {
 
 	int r, g, b;
 	std::ifstream fin;
@@ -29,7 +29,11 @@ void FilledForm::loadFile(std::string namefile) {
 	fin >> r >> g >> b;
 	solidColor = RGB(r, g, b);
 	fin.close();
-
+	if (chek_figure() && chek_border(hwnd)) state = true;
+	else {
+		state = false; 
+		throw 3;
+	}
 }
 
 void FilledForm::saveFile(std::string namefile) {
@@ -51,4 +55,20 @@ void FilledForm::saveFile(std::string namefile) {
 		 << " " << static_cast<int>(GetBValue(solidColor));
 	fout.close();
 
+}
+
+void FilledForm::enterFilledForm(int c_style, int c_size, Color c_color, POINT *c_points, HWND hwnd, int r, int g, int b) {
+
+	contourStyle = c_style;
+	contourSize = c_size;
+	contourColor = c_color;
+
+	set_pointsForm(c_points);
+	solidColor = RGB(r, g, b);
+
+	if (chek_figure() && chek_border(hwnd)) state = true;
+	else { 
+		state = false; 
+		throw 3; 
+	}
 }

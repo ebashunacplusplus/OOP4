@@ -14,7 +14,7 @@ public:
 	~FilledForm() {}
 
 	void drawForm(HDC hdc);
-	void loadFile(std::string namefile);
+	void loadFile(std::string namefile, HWND hwnd);
 	void saveFile(std::string namefile);
-
+	void FilledForm::enterFilledForm(int c_style, int c_size, Color c_color, POINT *c_points, HWND hwnd, int r ,int g, int b);
 };

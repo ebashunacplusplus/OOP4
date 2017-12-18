@@ -81,3 +81,23 @@ void Form::actionForm(HWND hwnd, HDC hdc) {
 		}
 	}
 }
+
+bool Form::chek_figure() const {
+	int a, b;
+	a = (points[2].x - points[1].x) * (points[3].y - points[0].y) -
+		(points[2].y - points[1].y) * (points[3].x - points[0].x);
+	b = (points[1].x - points[0].x) * (points[2].y - points[3].y) -
+		(points[1].y - points[0].y) * (points[2].x - points[3].x);
+	if (a == 0 && b != 0) return 1;
+	return 0;
+}
+
+bool Form::chek_border(HWND hwnd) const {
+	RECT border;
+	GetClientRect(hwnd, &border);
+	for (int i = 0; i < 4; i++) {
+		if (points[i].x > border.right || points[i].x < 0 || points[i].y > border.bottom || points[i].y < 0)
+			return 0;
+	}
+	return 1;
+}

@@ -21,7 +21,7 @@ void CombForm::drawForm(HDC hdc) {
 
 }
 
-void CombForm::loadFile(std::string namefile) {
+void CombForm::loadFile(std::string namefile, HWND hwnd) {
 
 	POINT cmb_P[4];
 	int cmb_style, cmb_size,r,g,b;
@@ -43,6 +43,12 @@ void CombForm::loadFile(std::string namefile) {
 	fin >> r >> g >> b;
 	solidColor = RGB(r, g, b);
 	fin.close();
+	if (chek_Nest() && chek_border(hwnd) 
+		&& chek_figure() && cTrapeze.chek_figure()) state = true;
+	else {
+		state = false;
+		throw 4;
+	}
 
 }
 
@@ -114,4 +120,27 @@ void CombForm::setLeft() {
 			cTrapeze.correctPointX(i, -1);
 		}
 	}
+}
+
+bool CombForm::chek_Nest() {
+
+	POINT temp[4];
+	cTrapeze.get_pointsForm(temp);
+
+	for (int i = 0; i < 4; i++) {
+		if (!chek_nest(temp[i])) {
+			return false;
+		}
+	}
+	return true;
+
+}
+
+bool CombForm::chek_nest(POINT trap_p) {
+	int area_trap, x;
+	area_trap = area_tr(points[0], points[1], points[3]) + area_tr(points[1], points[3], points[2]);
+	x = area_tr(points[0], points[3], trap_p) + area_tr(points[3], points[2], trap_p) +
+		area_tr(points[2], points[1], trap_p) + area_tr(points[1], points[0], trap_p);
+	if (x == area_trap)return true;
+	return false;
 }
